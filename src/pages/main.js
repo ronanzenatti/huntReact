@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import Voice from 'react-native-voice';
+import Tts from 'react-native-tts';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,' +
@@ -20,6 +21,8 @@ const instructions = Platform.select({
 export default class Main extends Component {
 
     constructor(props) {
+
+        Tts.setDefaultLanguage('pt-BR');
 
         super(props)
         this.state = { textoStatus: '', texto: '' }
@@ -34,6 +37,7 @@ export default class Main extends Component {
             ...this.state,
             texto: result.value[0]
         });
+        Tts.speak(this.state.texto);
     }
 
     onSpeechStartHandler() {
